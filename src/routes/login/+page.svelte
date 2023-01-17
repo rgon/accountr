@@ -21,11 +21,11 @@
 		<table>
 			<tr>
 				<td>Server</td>
-				<td><input type="text" bind:value={$serverUrl} disabled></td>
+				<td><input type="text" bind:value={$serverUrl}></td>
 			</tr>
 			<tr>
 				<td>Webdav dir</td>
-				<td><input type="text" bind:value={$storagePath} disabled></td>
+				<td><input type="text" bind:value={$storagePath}></td>
 			</tr>
 
 			<tr>
