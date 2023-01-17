@@ -1,12 +1,16 @@
 <script>
-	import { page } from '$app/stores';
-	import logo from '$lib/images/svelte-logo.svg';
-	import github from '$lib/images/github.svg';
+	import { page } from '$app/stores'
+	import logo from '$lib/assets/logo.svg'
+	import profile from '$lib/assets/profile.svg'
+	import login from '$lib/assets/login.svg'
+
+    import { ConnectionStatus } from '$lib/types'
+	import { connectionStatus, username } from '../routes/stores'
 </script>
 
 <header>
 	<div class="corner">
-		<a href="https://kit.svelte.dev">
+		<a href="/">
 			<img src={logo} alt="SvelteKit" />
 		</a>
 	</div>
@@ -19,11 +23,14 @@
 			<li aria-current={$page.url.pathname === '/' ? 'page' : undefined}>
 				<a href="/">Home</a>
 			</li>
-			<li aria-current={$page.url.pathname === '/about' ? 'page' : undefined}>
-				<a href="/about">About</a>
+			<li aria-current={$page.url.pathname === '/new' ? 'page' : undefined}>
+				<a href="/new">New Record</a>
 			</li>
-			<li aria-current={$page.url.pathname.startsWith('/sverdle') ? 'page' : undefined}>
-				<a href="/sverdle">Sverdle</a>
+			<li aria-current={$page.url.pathname.startsWith('/list') ? 'page' : undefined}>
+				<a href="/list">History</a>
+			</li>
+			<li aria-current={$page.url.pathname.startsWith('/bankLink') ? 'page' : undefined}>
+				<a href="/bankLink">Bank Link</a>
 			</li>
 		</ul>
 		<svg viewBox="0 0 2 3" aria-hidden="true">
@@ -32,9 +39,16 @@
 	</nav>
 
 	<div class="corner">
-		<a href="https://github.com/sveltejs/kit">
-			<img src={github} alt="GitHub" />
-		</a>
+		{#if $connectionStatus == ConnectionStatus.CONNECTED}
+			<a href="/login">
+				<img src={profile} alt="Profile" />
+			</a>
+			<!-- Connected as {$username} -->
+		{:else}
+			<a href="/login">
+				<img src={login} alt="Profile" />
+			</a>
+		{/if}
 	</div>
 </header>
 
@@ -47,6 +61,7 @@
 	.corner {
 		width: 3em;
 		height: 3em;
+		overflow-x: clip;
 	}
 
 	.corner a {
@@ -73,6 +88,7 @@
 		width: 2em;
 		height: 3em;
 		display: block;
+		flex-shrink: 0;
 	}
 
 	path {
@@ -84,6 +100,7 @@
 		padding: 0;
 		margin: 0;
 		height: 3em;
+		line-height: .8;
 		display: flex;
 		justify-content: center;
 		align-items: center;
@@ -113,7 +130,7 @@
 		display: flex;
 		height: 100%;
 		align-items: center;
-		padding: 0 0.5rem;
+		padding: 0 min(0.5rem, 1vw);
 		color: var(--color-text);
 		font-weight: 700;
 		font-size: 0.8rem;

@@ -1,6 +1,12 @@
 <script>
-	import Header from './Header.svelte';
-	import './styles.css';
+	import { init, serverUrl, storagePath, username, password } from "./stores"
+    import { onMount } from 'svelte'
+	import Header from './Header.svelte'
+	import './styles.css'
+
+	onMount(async () => {
+		init($username, $password)
+	})
 </script>
 
 <div class="app">
@@ -11,7 +17,7 @@
 	</main>
 
 	<footer>
-		<p>visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to learn SvelteKit</p>
+		<p>open containing folder <a href={$serverUrl + "/apps/files/?dir=" + $storagePath}>in nextcloud</a></p>
 	</footer>
 </div>
 

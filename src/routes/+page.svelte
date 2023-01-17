@@ -1,7 +1,5 @@
 <script>
-	import Counter from './Counter.svelte';
-	import welcome from '$lib/images/svelte-welcome.webp';
-	import welcome_fallback from '$lib/images/svelte-welcome.png';
+	import welcome from '$lib/assets/banner.svg';
 </script>
 
 <svelte:head>
@@ -11,21 +9,16 @@
 
 <section>
 	<h1>
-		<span class="welcome">
-			<picture>
-				<source srcset={welcome} type="image/webp" />
-				<img src={welcome_fallback} alt="Welcome" />
-			</picture>
-		</span>
-
-		to your new<br />SvelteKit app
+		<img class="welcome" src={welcome} alt="banner" />
 	</h1>
 
-	<h2>
-		try editing <strong>src/routes/+page.svelte</strong>
-	</h2>
+	<a href="/new">New Record</a>
 
-	<Counter />
+	<br>
+	<h3>Quick creation:</h3>
+	<p>	<a href="/new?notes=Supermercado&openUpload=true">Supermercado</a></p>
+	<p>	<a href="/new?notes=Gasolina&openUpload=true">Gasolina</a></p>
+	<p>	<a href="/new?notes=Restaurante&openUpload=true">Restaurante</a></p>
 </section>
 
 <style>
@@ -42,18 +35,10 @@
 	}
 
 	.welcome {
-		display: block;
+		display: inline-block;
 		position: relative;
 		width: 100%;
-		height: 0;
-		padding: 0 0 calc(100% * 495 / 2048) 0;
-	}
-
-	.welcome img {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		top: 0;
-		display: block;
+		max-width: 80vw;
+		object-fit: contain;
 	}
 </style>

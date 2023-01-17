@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Written by Treer (gitlab.com/Treer) -->
+
+<svg
+   version="1.1"
+   width="560"
+   height="560"
+   fill="#ffffff"
+   id="svg18"
+   sodipodi:docname="login.svg"
+   inkscape:version="1.2.2 (1:1.2.2+202212051552+b0a8486541)"
+   inkscape:export-filename="noProfilePhoto.jpg"
+   inkscape:export-xdpi="43.885715"
+   inkscape:export-ydpi="43.885715"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview20"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="0.70502016"
+     inkscape:cx="-31.913981"
+     inkscape:cy="407.78976"
+     inkscape:window-width="1862"
+     inkscape:window-height="1016"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg18" />
+  <title
+     id="title2">Abstract user icon</title>
+  <defs
+     id="defs10">
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect436"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Use fill-rule evenodd on &lt;b&gt;fill and stroke&lt;/b&gt; dialog if no flatten result after convert clip to paths." />
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect432"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Use fill-rule evenodd on &lt;b&gt;fill and stroke&lt;/b&gt; dialog if no flatten result after convert clip to paths." />
+    <clipPath
+       id="circular-border">
+      <circle
+         cx="300"
+         cy="300"
+         r="280"
+         id="circle4" />
+    </clipPath>
+    <clipPath
+       id="avoid-antialiasing-bugs">
+      <rect
+         width="100%"
+         height="498"
+         id="rect7"
+         x="0"
+         y="0" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath428">
+      <circle
+         style="display:none;fill:#000000;fill-opacity:0.0617574;-inkscape-stroke:none;stop-color:#000000"
+         id="circle430"
+         r="280"
+         cy="280"
+         cx="280"
+         d="M 560,280 A 280,280 0 0 1 280,560 280,280 0 0 1 0,280 280,280 0 0 1 280,0 280,280 0 0 1 560,280 Z" />
+    </clipPath>
+  </defs>
+  <circle
+     style="display:inline;fill:none;fill-opacity:0.0617574;stop-color:#000000;stroke:#000000;stroke-opacity:1;stroke-width:7;stroke-dasharray:none"
+     id="path357"
+     cx="280"
+     cy="210"
+     r="115" />
+  <path
+     id="path355"
+     style="display:inline;fill:none;fill-opacity:0.0617574;stop-color:#000000;stroke:#000000;stroke-opacity:1;stroke-width:7;stroke-dasharray:none"
+     d="M 280 325.08984 A 200 200 0 0 0 85.541016 480.51172 A 280 280 0 0 0 280 560 A 280 280 0 0 0 474.82617 480.14453 A 200 200 0 0 0 280 325.08984 z " />
+  <circle
+     style="display:none;fill:#000000;fill-opacity:0.0617574;stroke-width:0.975609;-inkscape-stroke:none;stop-color:#000000"
+     id="circle385"
+     clip-path="none"
+     cx="280"
+     cy="525.09009"
+     r="200" />
+  <circle
+     style="display:none;fill:#000000;fill-opacity:0.0617574;-inkscape-stroke:none;stop-color:#000000"
+     id="circle438"
+     r="280"
+     cy="280"
+     cx="280" />
+  <path
+     style="display:none;fill:#9e9e9e;fill-opacity:0.801534;stroke:none;stroke-width:27.0213;stroke-linejoin:round;stroke-miterlimit:200;stop-color:#000000"
+     id="path964"
+     sodipodi:type="arc"
+     sodipodi:cx="280.01413"
+     sodipodi:cy="265.20651"
+     sodipodi:rx="54.170895"
+     sodipodi:ry="37.936275"
+     sodipodi:start="0"
+     sodipodi:end="3.1415927"
+     sodipodi:arc-type="slice"
+     d="m 334.18502,265.20651 a 54.170895,37.936275 0 0 1 -27.08544,32.85378 54.170895,37.936275 0 0 1 -54.1709,0 54.170895,37.936275 0 0 1 -27.08544,-32.85378 h 54.17089 z" />
+  <path
+     style="display:none;fill:#9e9e9e;fill-opacity:0.801534;stroke:none;stroke-width:25;stroke-linejoin:round;stroke-miterlimit:200;stop-color:#000000"
+     id="path3250"
+     sodipodi:type="arc"
+     sodipodi:cx="-234.45351"
+     sodipodi:cy="-207.4043"
+     sodipodi:rx="22.447878"
+     sodipodi:ry="13.873552"
+     sodipodi:start="0"
+     sodipodi:end="3.1415927"
+     sodipodi:arc-type="slice"
+     d="m -212.00563,-207.4043 a 22.447878,13.873552 0 0 1 -11.22394,12.01485 22.447878,13.873552 0 0 1 -22.44788,0 22.447878,13.873552 0 0 1 -11.22393,-12.01485 h 22.44787 z"
+     transform="scale(-1)" />
+  <path
+     style="display:none;fill:#9e9e9e;fill-opacity:0.801534;stroke:none;stroke-width:25;stroke-linejoin:round;stroke-miterlimit:200;stop-color:#000000"
+     id="path3250-3"
+     sodipodi:type="arc"
+     sodipodi:cx="-329.52557"
+     sodipodi:cy="-206.9128"
+     sodipodi:rx="22.447878"
+     sodipodi:ry="13.873552"
+     sodipodi:start="0"
+     sodipodi:end="3.1415927"
+     sodipodi:arc-type="slice"
+     d="m -307.0777,-206.9128 a 22.447878,13.873552 0 0 1 -11.22394,12.01485 22.447878,13.873552 0 0 1 -22.44787,0 22.447878,13.873552 0 0 1 -11.22394,-12.01485 h 22.44788 z"
+     transform="scale(-1)" />
+  <path
+     style="fill:none;stroke:#000000;stroke-width:7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+     d="M 23.341929,124.8617 V 295.14059 L 108.46505,210.01747 Z"
+     id="path367"
+     sodipodi:nodetypes="cccc" />
+</svg>
