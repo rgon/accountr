@@ -30,3 +30,36 @@ npm run build
 ```
 
 You can preview the production build with `npm run preview`.
+
+## Deployment
+You may run the docker-compose project in the root dir and expose it.
+
+Don't forget to allow CORS access to your domain frmm the source url. On NGINX:
+
+`nginx.conf`:
+```nginx
+    map $http_origin $allow_origin {
+        ~^https?://(.*\.)?YOURDOMAINDOTCOM(:\d+)?$ $http_origin;
+        ~^https?://(.*\.)?localhost(:\d+)?$ $http_origin;
+        default "";
+    }
+```
+
+`nextcloudDomain.com`
+```
+    location / {
+		...
+        if ($request_method = 'OPTIONS') {
+            add_header 'Access-Control-Allow-Headers' 'authorization,content-type' always;
+            add_header 'Access-Control-Allow-Origin' $allow_origin always;
+            add_header 'Access-Control-Allow-Credentials' 'true' always;
+            add_header 'Access-Control-Allow-Methods' 'GET,POST,OPTIONS,PUT,DELETE,PATCH';
+
+            add_header 'Access-Control-Max-Age' 1728000;
+            add_header 'Content-Type' 'text/plain charset=UTF-8';
+            add_header 'Content-Length' 0;
+            return 204;
+        }
+		proxy_pass LOCALSERVER;
+    }
+```
