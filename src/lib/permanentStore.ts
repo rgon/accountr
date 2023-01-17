@@ -5,7 +5,7 @@ export function storable<T>(key:string, data:T|undefined = undefined) {
    const { subscribe, set } = store
    const isBrowser = typeof window !== 'undefined'
 
-   if (isBrowser && localStorage.getItem(key)) {
+   if (isBrowser && localStorage.getItem(key) && localStorage.getItem(key) !== 'undefined') {
       set(JSON.parse(localStorage.getItem(key) || ''))
    }
 
