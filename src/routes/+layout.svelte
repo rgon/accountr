@@ -17,7 +17,7 @@
 	</main>
 
 	<footer>
-		<p>open containing folder <a href={$serverUrl + "/apps/files/?dir=" + $storagePath}>in nextcloud</a></p>
+		<p>open containing folder <a href={$serverUrl + "/apps/files/?dir=" + $storagePath} rel="external">in nextcloud</a></p>
 	</footer>
 </div>
 
