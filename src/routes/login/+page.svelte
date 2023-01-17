@@ -1,11 +1,10 @@
 <script lang="ts">
-	import DateInput from '$lib/DateInput.svelte'
-
 	import type { Record } from "$lib/types"
-    import { storagePath, serverUrl, username, password } from "../stores"
+    import { init, storagePath, serverUrl, username, password } from "../stores"
 
-	function submit () {
+	async function submit () {
 		console.log('submit')
+		await init($username, $password)
 	}
 </script>
 

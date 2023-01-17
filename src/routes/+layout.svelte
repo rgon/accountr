@@ -1,7 +1,13 @@
-<script>
+<script lang="ts">
 	import { init, serverUrl, storagePath, username, password } from "./stores"
     import { onMount } from 'svelte'
 	import Header from './Header.svelte'
+
+	import AlertEngine from '$lib/AlertEngine.svelte'
+    import type { AlertEngineControl } from '$lib/AlertEngineTypes'
+    // import { Alert, AlertType } from '$lib/AlertEngineTypes'
+    let alertEngine:AlertEngineControl
+
 	import './styles.css'
 
 	onMount(async () => {
@@ -19,6 +25,8 @@
 	<footer>
 		<p>open containing folder <a href={$serverUrl + "/apps/files/?dir=" + $storagePath} rel="external">in nextcloud</a></p>
 	</footer>
+
+	<AlertEngine bind:control={alertEngine} bindConsole={true}></AlertEngine>
 </div>
 
 <style>

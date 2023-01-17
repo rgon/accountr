@@ -24,11 +24,17 @@ export class ApiController {
     }
 
     async init () {
-        if (await this.client.exists(STORAGE_PATH) === false) {
-            console.info('creating directory ' + STORAGE_PATH)
-            await this.client.createDirectory(STORAGE_PATH)
+        connectionStatus.set(ConnectionStatus.DISCONNECTED)
+
+        try {
+            if (await this.client.exists(STORAGE_PATH) === false) {
+                console.info('creating directory ' + STORAGE_PATH)
+                await this.client.createDirectory(STORAGE_PATH)
+            }
+            connectionStatus.set(ConnectionStatus.CONNECTED)
+        } catch (e) {
+            connectionStatus.set(ConnectionStatus.ERROR)
         }
-        connectionStatus.set(ConnectionStatus.CONNECTED)
     }
 
     async getItems () {
