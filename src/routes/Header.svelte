@@ -38,7 +38,7 @@
 		</svg>
 	</nav>
 
-	<div class="corner">
+	<div class="corner" class:error={$connectionStatus == ConnectionStatus.ERROR}>
 		{#if $connectionStatus == ConnectionStatus.CONNECTED}
 			<a href="/login">
 				<img src={profile} alt="Profile" />
@@ -56,6 +56,10 @@
 	header {
 		display: flex;
 		justify-content: space-between;
+
+		position: sticky;
+		top: 0;
+		left: 0;
 	}
 
 	.corner {
@@ -112,6 +116,7 @@
 	li {
 		position: relative;
 		height: 100%;
+		text-align: center;
 	}
 
 	li[aria-current='page']::before {
@@ -142,5 +147,10 @@
 
 	a:hover {
 		color: var(--color-theme-1);
+	}
+
+	.error {
+		background-color: red;
+		border-radius: 50%;
 	}
 </style>
