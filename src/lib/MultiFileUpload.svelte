@@ -86,7 +86,7 @@
         {#if previewOpen}
         <object title="preview" data={fileList[previewIdx].previewSrc} type={fileList[previewIdx].type} width="100%" height="100%" style="aspect-ratio: 1/1; object-fit:contain;"></object>
         {/if}
-        <pre>{fileList[previewIdx].filename}</pre>
+        <pre>{fileList[previewIdx]?.filename}</pre>
         <button on:click={() => {
             previewOpen = false;
             setTimeout(() => {
