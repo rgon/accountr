@@ -1,6 +1,6 @@
 # accountr
 
-A webdav simple ticket-storage system to ease accounting later on. Connets to a webdav server (like the one running inside nextcloud).
+A simple ticket-storage system to ease accounting later on. Connects to a webdav server (like the one running inside nextcloud).
 
 Stores credentials and options in localStorage. Has no server-side components (yet).
 
