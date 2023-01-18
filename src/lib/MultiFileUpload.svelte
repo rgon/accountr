@@ -1,14 +1,24 @@
+<script context="module">
+	let idCounter = 0
+</script>
+
 <script lang="ts">
     import type { UploadedFile } from '$lib/types'
 
     import Modal from '$lib/Modal.svelte'
     import Card from '$lib/Card.svelte'
+    import { onMount } from 'svelte';
 
     let fileinput:HTMLInputElement
 	let uploadImage:boolean = true
 
     let previewOpen:boolean = false
     let previewIdx:number = 0
+
+    let dropZoneDialog:HTMLDialogElement
+    let showGlobalDropZone:boolean = false
+    let filesAreInGlobalDropZone:boolean = false
+    let filesInSpecificDropZone:boolean = false
 
     export let fileList:UploadedFile[] = []
 
@@ -33,25 +43,123 @@
         return imageUrl
     }
 
+    async function uploadFileToEditor (file:File, _contents:ArrayBuffer|undefined=undefined) {
+        let fileContents:ArrayBuffer = _contents || await file.arrayBuffer()
+
+        fileList = [...fileList, {
+            filename: file.name,
+            type: file.type,
+            content: fileContents,
+            previewSrc: getImagePreviewFromArrayBuffer(fileContents),
+            isImage: file.type.startsWith('image')
+        }]
+    }
     function onFileSelected (e:any) {
         [...e.target.files].forEach((file:any) => {
             let reader = new FileReader()
             reader.readAsArrayBuffer(file)
             
-            reader.onload = (ev) => {
-                fileList = [...fileList, {
-                    filename: file.name,
-                    type: file.type,
-                    content: ev.target?.result as ArrayBuffer,
-                    previewSrc: getImagePreviewFromArrayBuffer(ev.target?.result as ArrayBuffer),
-                    isImage: file.type.startsWith('image')
-                }]
+            reader.onload = async (ev) => {
+                await uploadFileToEditor(file, ev.target?.result as ArrayBuffer)
             }
         })
 	}
+
+    async function dropHandler (e:any, isGlobal:boolean=false) {
+        e.preventDefault()
+        e.stopPropagation()
+        
+        // Ignore if not dragging files
+        if (e.dataTransfer.items.length) {
+            async function getFilesInDataTransferItemList (f:any):Promise<File[]> {
+                // https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry
+                if (typeof(f.webkitGetAsEntry) === 'function') f = f.webkitGetAsEntry()
+                else if (typeof(f.getAsEntry) === 'function') f = f.getAsEntry()
+                
+                if (!f.isDirectory) {
+                    console.log('got file', f, f.file)
+                    return [await new Promise((resolve, reject) => {
+                        f.file((file:any) => resolve(file))
+                    })] as File[]
+                } else {
+                    // Get folder contents
+                    let directoryReader = f.createReader()
+
+                    return await new Promise((resolve, reject) => {
+                        directoryReader.readEntries(async (entries:FileSystemFileEntry[]) => {
+                            let foundFiles:File[] = []
+                            for (let entry of entries) {
+                                for (let processedFile of await getFilesInDataTransferItemList(entry)) {
+                                    foundFiles.push(processedFile)
+                                }
+                            }
+                            resolve(foundFiles)
+                        })
+                    })
+                }
+            }
+
+            for (let f of e.dataTransfer.items) {
+                (await getFilesInDataTransferItemList(f)).forEach(item => {
+                    uploadFileToEditor(item)
+                })
+            }
+
+            // let draggedFiles:File[] = [...e.dataTransfer.items].flatMap(async (f:any) => {
+            //      return await getFilesInDataTransferItemList(f)
+            // })
+
+            // draggedFiles.forEach(file => uploadFileToEditor(file))
+        }
+        filesAreInGlobalDropZone = false
+        filesInSpecificDropZone = false
+    }
+    function dragOverHandler (e:any, isGlobal:boolean=false) {
+        // Ignore if not dragging files
+        if (!e.dataTransfer.items.length) return
+
+        e.preventDefault()
+        // e.stopPropagation()
+        if (isGlobal) filesAreInGlobalDropZone = true
+        else filesInSpecificDropZone = true
+    }
+    function dragLeaveHandler (e:any, isGlobal:boolean=false) {
+        e.preventDefault()
+        // e.stopPropagation()
+
+        if (isGlobal) filesAreInGlobalDropZone = false
+        else filesInSpecificDropZone = false
+    }
+
+    onMount(() => {
+        const globalDragOverHandler = (e:any) => dragOverHandler(e, true)
+        const globalDragLeaveHandler = (e:any) => dragLeaveHandler(e, true)
+        const globalDropHandler = (e:any) => dropHandler(e, true)
+
+        if (idCounter == 0) {
+            console.debug('setting global file drop handlers')
+            document.body.addEventListener('dragover', globalDragOverHandler)
+            document.body.addEventListener('dragleave', globalDragLeaveHandler)
+            document.body.addEventListener('drop', globalDropHandler)
+
+            showGlobalDropZone = true
+        }
+
+        idCounter++
+        return () => {
+            idCounter--
+
+            if (idCounter == 0) {
+                document.body.removeEventListener('dragover', globalDragOverHandler)
+                document.body.removeEventListener('dragleave', globalDragLeaveHandler)
+                document.body.removeEventListener('drop', globalDropHandler)
+            }
+        }
+    })
 </script>
-<fieldset class="fileUpload">
-    <legend>Upload Images</legend>
+<fieldset class="fileUpload" class:filesAreInDropZone={filesInSpecificDropZone}
+on:dragover|preventDefault|stopPropagation={dragOverHandler} on:dragleave|preventDefault|stopPropagation={dragLeaveHandler} on:drop|preventDefault|stopPropagation={dropHandler}>
+    <legend>Upload Images (drop here)</legend>
 
     <input style="display:none" type="file" accept={uploadImage ? 'image/*' : '*'}
 		on:change={(e)=>onFileSelected(e)} bind:this={fileinput}>
@@ -83,7 +191,7 @@
 
 <Modal open={previewOpen}>
 	<Card title="File preview">
-        {#if previewOpen}
+        {#if fileList[previewIdx] && previewOpen}
         <object title="preview" data={fileList[previewIdx].previewSrc} type={fileList[previewIdx].type} width="100%" height="100%" style="aspect-ratio: 1/1; object-fit:contain;"></object>
         {/if}
         <pre>{fileList[previewIdx]?.filename}</pre>
@@ -96,7 +204,40 @@
 	</Card>
 </Modal>
 
+{idCounter == 0}
+{#if showGlobalDropZone}
+<dialog
+    bind:this={dropZoneDialog}
+    
+    class:filesAreInDropZone={filesAreInGlobalDropZone}
+    open>
+</dialog>
+{/if}
+
 <style>    
+    dialog {
+        position: fixed;
+        top: 0;
+        left: 0;
+
+        width: 100vw;
+        height: 100vh;
+        
+        box-sizing: border-box;
+
+        background: none;
+        border: none;
+        margin: 0;
+        padding: 0;
+
+        pointer-events: none;
+    }
+    dialog.filesAreInDropZone {
+        border: 2em solid var(--color-theme-1);
+    }
+    .filesAreInDropZone:not(dialog) {
+        outline: 1em solid var(--color-theme-1);
+    }
     /* File Upload */
     fieldset.fileUpload {
         padding: .2em 1em .5em 1em;
