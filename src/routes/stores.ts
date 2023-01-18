@@ -28,7 +28,7 @@ export function init (username:string, password:string) {
     storagePath.set(STORAGE_PATH)
     serverUrl.set('https://cloud.rgon.es')
 
-    let controller = new ApiController(get(serverUrl) + '/remote.php/dav/files/rgon/', username, password)
+    let controller = new ApiController(get(serverUrl), username, password)
     apiController.set(controller)
     controller.init()
 }

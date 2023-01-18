@@ -1,6 +1,6 @@
 <script lang="ts">
 	import dayjs from 'dayjs'
-	import { getApiController } from "../stores"
+	import { apiController as globalAc } from "../stores"
 	import type { Writable } from "svelte/store"
 
 	import type { ApiController } from '$lib/apiController'
@@ -14,8 +14,6 @@
 
 	let apiController:ApiController
 	let savedFileList:Writable<string[]>
-
-	$: savedFileList = apiController?.savedFileList
 
 	async function reload() {
 		await apiController.getItems()
@@ -46,7 +44,12 @@
 	}
 	
 	onMount(async () => {
-		apiController = await getApiController()
+		globalAc.subscribe(ac => {
+			if (!ac) return
+			apiController = ac
+			savedFileList = ac.savedFileList
+			apiController.getItems()
+		})
 
 		await reload()
 	})
@@ -105,9 +108,6 @@
 <style>
 	.text-column {
 		max-width: min(48rem, 95vw);
-	}
-	table {
-		max-width: 95vw;
 		overflow: auto;
 	}
 </style>

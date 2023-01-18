@@ -1,7 +1,7 @@
-import { writable, type Writable } from "svelte/store"
+import { writable, get, type Writable } from "svelte/store"
 import { ConnectionStatus, type Record } from "$lib/types"
 import { createClient, type WebDAVClient } from "webdav/web"
-import { connectionStatus, username as usernee } from "../routes/stores"
+import { connectionStatus, username as usernee, password as passee, serverUrl } from "../routes/stores"
 import { makeFilename, stripExtension } from "./utils"
 
 export const STORAGE_PATH = '/webAccounter'
@@ -12,19 +12,27 @@ export class ApiController {
 
     constructor (url: string, username: string, password: string) {
         this.client = createClient(
-            url,
+            `${url}/remote.php/dav/files/${username}/`,
             {
                 username,
-                password
+                password,
+                withCredentials: false
             }
         )
         usernee.set(username)
-        console.log('loggingin', username, password)
+        console.log('logging in ', username)
 
         this.savedFileList = writable([])
     }
 
     async init () {
+        this.client = createClient(
+            `${get(serverUrl)}/remote.php/dav/files/${get(usernee)}/`,
+            {
+                username: get(usernee),
+                password: get(passee)
+            }
+        )
         connectionStatus.set(ConnectionStatus.DISCONNECTED)
 
         try {
@@ -32,8 +40,9 @@ export class ApiController {
                 console.info('creating directory ' + STORAGE_PATH)
                 await this.client.createDirectory(STORAGE_PATH)
             }
+            console.info('connected')
             connectionStatus.set(ConnectionStatus.CONNECTED)
-        } catch (e) {
+        } catch (e:any) {
             console.error(String(e.toString()))
             connectionStatus.set(ConnectionStatus.ERROR)
         }
