@@ -6,7 +6,14 @@
       {
         "src": "logo_512.png",
         "type": "image/png",
-        "sizes": "512x512"
+        "sizes": "512x512",
+        "purpose": "any"
+      },
+      {
+        "src": "logo_512.png",
+        "type": "image/png",
+        "sizes": "512x512",
+        "purpose": "maskable"
       }
     ],
     "background_color": "rgb(228, 202, 219)",
@@ -19,14 +26,14 @@
         "short_name": "Ticket",
         "description": "Escanear y guardar ticket",
         "url": "/new?notes=Supermercado&openUpload=true",
-        "icons": [{ "src": "/icons/logo_192.png", "sizes": "192x192" }]
+        "icons": [{ "src": "/logo_192.png", "sizes": "192x192" }]
       },
       {
         "name": "Ticket Gasolinera",
         "short_name": "Gasolinera",
         "description": "Escanear y guardar ticket gasolinera",
         "url": "/new?notes=Gasolina&openUpload=true",
-        "icons": [{ "src": "/icons/logo_192.png", "sizes": "192x192" }]
+        "icons": [{ "src": "/logo_192.png", "sizes": "192x192" }]
       }
     ],
     "description": "A simple ticket-storage system to ease accounting later on. Connects to a webdav server (like the one running inside nextcloud).    "
