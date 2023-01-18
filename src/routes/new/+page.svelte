@@ -61,9 +61,10 @@
 			thisRecord.part = idx
 			const thisFilename = makeFilename(thisRecord)
 
-			console.log('submit', `${thisFilename}.${extension}`, 'ArrayBufferLength', file.content.byteLength)
-			await apiController.uploadFile(`${filename}.${extension}`, file.previewSrc)
-			console.log('ok')
+			console.info(`Uploading ${extension} file ${idx}`)
+			// console.log('submit', `${thisFilename}.${extension}`, 'ArrayBufferLength', file.content.byteLength)
+			await apiController.uploadFile(`${filename}.${extension}`, file.content)
+			console.info('ok')
 			window.location.href = '/'
 		})
 	}
