@@ -3,7 +3,7 @@
 	import ButtonCard from '$lib/ButtonCard.svelte'
 	import AddNew from "svelte-material-icons/PlusThick.svelte"
 	import GasStation from "svelte-material-icons/GasStation.svelte"
-	import SilverwareForkKnife from "svelte-material-icons/GasStation.svelte"
+	import SilverwareForkKnife from "svelte-material-icons/SilverwareForkKnife.svelte"
 	import Cart from "svelte-material-icons/Cart.svelte"
 
 </script>
@@ -32,7 +32,7 @@
 		<ButtonCard  href="/new?notes=Restaurante&openUpload=true" label="Restaurante">
 			<SilverwareForkKnife />
 		</ButtonCard>
-		<ButtonCard href="/new" label="Other">
+		<ButtonCard href="/new?openUpload=true" label="Other">
 			<AddNew />
 		</ButtonCard>
 	</div>
