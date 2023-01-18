@@ -69,10 +69,10 @@
         {/each}
 
         <button class="uploadButton" on:click={
-            () => {uploadImage = true; fileinput.click()}
+            () => {uploadImage = true; requestAnimationFrame(() => fileinput.click())}
         }>+PH</button>
         <button class="uploadButton" on:click={
-            () => {uploadImage = false; fileinput.click()}
+            () => {uploadImage = false; requestAnimationFrame(() => fileinput.click())}
         }>+PDF</button>
 <!--         
         <label class="uploadButton" for="upload" on:click={
