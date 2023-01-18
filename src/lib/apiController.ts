@@ -1,6 +1,6 @@
 import { writable, get, type Writable } from "svelte/store"
 import { ConnectionStatus, type Record } from "$lib/types"
-import { createClient, type WebDAVClient } from "webdav/web"
+import { createClient, type WebDAVClient } from "webdav"
 import { connectionStatus, username as usernee, password as passee, serverUrl } from "../routes/stores"
 import { makeFilename, stripExtension } from "./utils"
 

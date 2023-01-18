@@ -7,10 +7,10 @@
 	import Modal from '$lib/Modal.svelte'
 	import MCard from '$lib/Card.svelte';
 	import type { Record } from '$lib/types'
-	import { makeFilename, parseFilename } from '$lib/utils'
+	import { parseFilename } from '$lib/utils'
     import { onMount } from "svelte";
     import RecordEdit from "$lib/RecordEdit.svelte";
-    import DocPreview from '$lib/DocPreview.svelte';
+    import DocPreview from '$lib/DocPreview.svelte'
 
 	let apiController:ApiController
 	let savedFileList:Writable<string[]>
