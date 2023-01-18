@@ -18,7 +18,7 @@
     ],
     "background_color": "rgb(228, 202, 219)",
     "display": "standalone",
-    "scope": "/",
+    "scope": "https://accountr.rgon.es/",
     "theme_color": "#f7eff4",
     "shortcuts": [
       {

@@ -23,7 +23,7 @@
 	</main>
 
 	<footer>
-		<p>open containing folder <a href={$serverUrl + "/apps/files/?dir=" + $storagePath} rel="external">in nextcloud</a></p>
+		<p>open containing folder <a target="_blank" href={$serverUrl + "/apps/files/?dir=" + $storagePath} rel="external noreferrer">in nextcloud</a></p>
 	</footer>
 
 	<AlertEngine bind:control={alertEngine} bindConsole={true}></AlertEngine>
