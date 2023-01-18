@@ -79,7 +79,6 @@
 
 	<RecordEdit on:submit={submit} enabled={enabled} bind:value />
 
-	<h2>Files</h2>
 	<MultiFileUpload bind:fileList={fileList} bind:control={uploadControl} />
 
 	<p>

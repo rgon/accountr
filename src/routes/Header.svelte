@@ -61,6 +61,11 @@
 		top: 0;
 		left: 0;
 		z-index: 100;
+		background-image: linear-gradient(
+			to bottom,
+			var(--color-bg-0) 70%,
+			transparent
+		);
 	}
 
 	.corner {

@@ -204,7 +204,6 @@ on:dragover|preventDefault|stopPropagation={dragOverHandler} on:dragleave|preven
 	</Card>
 </Modal>
 
-{idCounter == 0}
 {#if showGlobalDropZone}
 <dialog
     bind:this={dropZoneDialog}

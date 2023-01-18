@@ -1,5 +1,11 @@
 <script>
-	import welcome from '$lib/assets/banner.svg';
+	import welcome from '$lib/assets/banner.svg'
+	import ButtonCard from '$lib/ButtonCard.svelte'
+	import AddNew from "svelte-material-icons/PlusThick.svelte"
+	import GasStation from "svelte-material-icons/GasStation.svelte"
+	import SilverwareForkKnife from "svelte-material-icons/GasStation.svelte"
+	import Cart from "svelte-material-icons/Cart.svelte"
+
 </script>
 
 <svelte:head>
@@ -12,13 +18,24 @@
 		<img class="welcome" src={welcome} alt="banner" />
 	</h1>
 
-	<a href="/new">New Record</a>
-
+	
 	<br>
 	<h3>Quick creation:</h3>
-	<p>	<a href="/new?notes=Supermercado&openUpload=true">Supermercado</a></p>
-	<p>	<a href="/new?notes=Gasolina&openUpload=true">Gasolina</a></p>
-	<p>	<a href="/new?notes=Restaurante&openUpload=true">Restaurante</a></p>
+	
+	<div style="max-width: 100%; display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 1em;">
+		<ButtonCard  href="/new?notes=Supermercado&openUpload=true" label="Supermercado">
+			<Cart />
+		</ButtonCard>
+		<ButtonCard  href="/new?notes=Gasolina&openUpload=true" label="Gasolina">
+			<GasStation />
+		</ButtonCard>
+		<ButtonCard  href="/new?notes=Restaurante&openUpload=true" label="Restaurante">
+			<SilverwareForkKnife />
+		</ButtonCard>
+		<ButtonCard href="/new" label="Other">
+			<AddNew />
+		</ButtonCard>
+	</div>
 </section>
 
 <style>
