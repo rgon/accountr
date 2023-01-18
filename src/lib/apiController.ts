@@ -19,6 +19,7 @@ export class ApiController {
             }
         )
         usernee.set(username)
+        console.log('loggingin', username, password)
 
         this.savedFileList = writable([])
     }
@@ -33,6 +34,7 @@ export class ApiController {
             }
             connectionStatus.set(ConnectionStatus.CONNECTED)
         } catch (e) {
+            console.error(String(e.toString()))
             connectionStatus.set(ConnectionStatus.ERROR)
         }
     }
